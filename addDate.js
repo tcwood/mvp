@@ -7,9 +7,11 @@ $(document).ready(function() {
     var curr = moment();
     var next;
 
-    for (var i of daySpacing) {
+    for (var interval of daySpacing) {
+      // console.log(curr.format());
+
       curr = $.extend(true, {}, curr);
-      curr = curr.add(daySpacing[i], 'days');
+      curr = curr.add(interval, 'days');
 
       events.push({
         title: title,
