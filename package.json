@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/tcwood/mvp#readme",
   "dependencies": {
-    "fullcalendar": "^3.0.1"
+    "fullcalendar": "^3.0.1",
+    "jquery": "^3.1.1",
+    "moment": "^2.15.1"
   }
 }
