@@ -5,16 +5,18 @@ angular.module('eventAdder', ['ngRoute'])
         templateUrl: '/eventAdder/form.html',
         controller: 'eventAdderCntrl'
       })
-      .otherwise({
-        redirectTo: '/'
-      })
+      // .otherwise({
+      //   redirectTo: '/'
+      // })
   })
   .controller('eventAdderCntrl', function($scope, $location, $http){
     $scope.warning = '';
 
     $scope.sendData = function() {
+      //Invalid form data
       if ($scope.description === undefined || $scope.description === '') {
         $scope.warning = 'Please enter a description!';
+      //Send POST request
       } else {
         var data = JSON.stringify({
           description: $scope.description,
@@ -24,17 +26,20 @@ angular.module('eventAdder', ['ngRoute'])
         $http({
           method: 'POST',
           data: data,
-          url: '/addData'
-        }).then(function successCallback(response) {
+          url: './addData'
+        }).success(function(response) {
             console.log('response from post success!', response);
-            $http.get('/')
-            .then(function successCallback(res) {
-              console.log('GET right after post dataz-', res.data);
-            }), function errorCallback(res) {
+            //Send GET request after successful POST
+            $http.get('./getEvents')
+              .success(function(res) {
+              console.log('GET right after post dataz-', res);
+              })
+              .error(function(res) {
               console.log('GET right after post = failz', res);
-            }
-          }, function errorCallback(response) {
-            console.log('error:', response);
+              });
+          })
+          .error(function(response) {
+            console.log('error on POST:', response);
           });
       }
 

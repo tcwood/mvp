@@ -7,6 +7,7 @@ var findAllEvents = Q.nbind(Event.find, Event);
 
 module.exports = {
   allEvents: function(req, res, next) {
+    console.log('allEvents called on a GET request');
     findAllEvents({})
       .then(function(events) {
         console.log('events from event controller on GET req', events);
@@ -29,7 +30,7 @@ module.exports = {
         description: description,
         startDay: startDay
       });
-      console.log('event from inside eventController on post', event);
+      // console.log('event from inside eventController on post', event);
       res.json(event);
     }  
   }

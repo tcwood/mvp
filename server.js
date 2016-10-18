@@ -9,25 +9,27 @@ var eventController = require('./events/eventController.js')
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017', function(){
-  console.log('connected to db!');
-});
+mongoose.connect('mongodb://localhost/data');
+
+db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', function(){
+  console.log('successfully connected to the DB');
+
+})
 
 
 app.use(express.static(__dirname + '/client'));  
 app.use(bodyParser.json());
 
-// app.get('/', function(req, res) {
-//   // res.sendFile(__dirname + '/client/index.html')
-// });
+app.get('/getEvents', eventController.allEvents);
 
-app.get('/', eventController.allEvents);
 app.post('/addData', eventController.newEvent);
 
-// app.post('/addData', function(req, res) {
-//   console.log('posting...', req.body);
-//   res.sendStatus(201);
-// });
+app.get('*', function(req, res){
+  res.send('what???', 404);
+});
 
 app.listen('3000', function() {
   console.log('server listening on port 3000');
