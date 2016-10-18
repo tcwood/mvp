@@ -13,7 +13,16 @@ angular.module('eventAdder', ['ngRoute'])
     $scope.warning = '';
 
     $scope.dotCols = [1,2,3,4,5,6,7];
-    $scope.dotRows = [1,2,3,4];
+    $scope.dotRows = [0, 1, 2, 3, 4, 5, 6];
+
+    $scope.defaultInterval = [0,1,2,4,8,16,32, 64];
+
+    $scope.setClass = function(index) {
+      console.log(index);
+      if ($scope.defaultInterval.indexOf(index) !== -1) {
+        return {"background-color": "#273751"}
+      }
+    }
 
     $scope.sendData = function() {
       //Invalid form data

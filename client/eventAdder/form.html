@@ -15,28 +15,10 @@
     Date: {{date}} <br> -->
   </div>
   <div ng-repeat='dotRow in dotRows' class="row">
-    <div ng-repeat='dotCol in dotCols' class="square"></div>
+    <div ng-repeat='dotCol in dotCols' 
+    class="square" 
+    ng-style="setClass(dotRow * 7 + dotCol)" 
+    data="{{dotRow * 7 + dotCol}}"></div>
   </div>
 </div>
 
-<!-- <div class="row">
-    <div ng-repeat='square in week' class="squares"></div>
-
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-</div>
-<div class="row">
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-    <div class="squares"></div>
-</div>
-   -->
