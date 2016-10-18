@@ -24,7 +24,7 @@ module.exports = {
       console.log('ERRRRROOOOORRRR posting stuff. this is from controller');
     } else {
       var description =  req.body.description;
-      var startDay = req.body.date;
+      var startDay = req.body.date || new Date();
 
       var event = createEvent({
         description: description,
