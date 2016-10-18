@@ -13,8 +13,8 @@ angular.module('eventAdder', ['ngRoute'])
     $scope.warning = '';
 
     $scope.sendData = function() {
-      if ($scope.title === undefined) {
-        $scope.warning = 'Please enter a description';
+      if ($scope.title === undefined || $scope.title === '') {
+        $scope.warning = 'Please enter a description!';
       } else {
         var data = JSON.stringify({
           title: $scope.title,

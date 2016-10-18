@@ -1,8 +1,11 @@
 <div ng-controller='eventAdderCntrl'>
   <form name='eventAdderForm' ng-submit='sendData()'>
-    Short description:
-    <input type='text' ng-model='title'> {{warning}}<br>
-    Starting date:
+    <span>Short description: </span>
+    <br>
+    <input type='text' ng-model='title'> <br>
+    <font color='red'>{{warning}}</font><br>
+    <span>Start date:</span>
+    <br>
     <input type='date' ng-model='date'><br>
     <button> Add to calendar </button>
   </form>

@@ -1,0 +1,33 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tcwood/mvp",
+  "authors": [
+    "Travis Wood"
+  ],
+  "description": "Client to calendar recurring event adder",
+  "main": "index.html",
+  "keywords": [
+    "calendar",
+    "events",
+    "recurring",
+    "spaced",
+    "repetition"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "~1.5.8",
+    "angular": "~1.5.8",
+    "fullcalendar": "~3.0.1",
+    "bootstrap": "~3.3.7",
+    "jquery": "~3.1.1",
+    "moment": "~2.15.1"
+  }
+}
