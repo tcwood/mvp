@@ -6,13 +6,41 @@ angular.module('eventAdder', ['ngRoute'])
         controller: 'eventAdderCntrl'
       })
       .otherwise({
-        redirectTo: '/calendar'
+        redirectTo: '/'
       })
   })
-  .controller('eventAdderCntrl', function($scope, $location){
-    $scope.changePath = function() {
-      console.log($location.path);
-      $location.path('/calendar')
+  .controller('eventAdderCntrl', function($scope, $location, $http){
+    $scope.warning = '';
+
+    $scope.sendData = function() {
+      if ($scope.title === undefined) {
+        $scope.warning = 'Please enter a description';
+      } else {
+        var data = JSON.stringify({
+          title: $scope.title,
+          date: $scope.date
+        });
+
+
+        $http({
+          method: 'POST',
+          data: data,
+          url: '/addData'
+        }).then(function successCallback(response) {
+            console.log(response);
+
+
+            // this callback will be called asynchronously
+            // when the response is available
+          }, function errorCallback(response) {
+            console.log('error:', response);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+          });
+      }
+
+
+      console.log($scope.title, $scope.date);
     };
 
   });
