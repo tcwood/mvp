@@ -5,9 +5,9 @@ angular.module('eventAdder', ['ngRoute'])
         templateUrl: '/eventAdder/form.html',
         controller: 'eventAdderCntrl'
       })
-      // .otherwise({
-      //   redirectTo: '/'
-      // })
+      .otherwise({
+        redirectTo: '/'
+      })
   })
   .controller('eventAdderCntrl', function($scope, $location, $http){
     $scope.warning = '';
@@ -22,7 +22,6 @@ angular.module('eventAdder', ['ngRoute'])
           description: $scope.description,
           date: $scope.date
         });
-
         $http({
           method: 'POST',
           data: data,
@@ -32,30 +31,28 @@ angular.module('eventAdder', ['ngRoute'])
             //Send GET request after successful POST
             $http.get('./getEvents')
               .success(function(res) {
-              //res now gets correct data... an array with all start event objects
                 $('#calendar').fullCalendar('removeEvents');
 
                 var events = recurrEvent('do the things', '2016-10-17T07:00:00.000Z');
-                console.log('global recurrEvents?', events)
 
-                $('#calendar').fullCalendar('addEventSource', events);
-              //pass events through recurr Event function to make events masterlist array
+                var allEvents = [];
 
-              //refresh calendar to have updated events
+                res.forEach(function(startEvent) {
+                  var description = startEvent.description;
+                  var startDate = startEvent.startDay;
+                  allEvents = allEvents.concat(recurrEvent(description, startDate));
+                })
 
-
-              console.log('GET right after post dataz-', res);
+                //refresh calendar to have updated events
+                $('#calendar').fullCalendar('addEventSource', allEvents);
               })
               .error(function(res) {
-              console.log('GET right after post = failz', res);
+                console.log('GET right after post = failz', res);
               });
           })
           .error(function(response) {
             console.log('error on POST:', response);
           });
       }
-
-      console.log($scope.description, $scope.date);
     };
-
   });

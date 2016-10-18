@@ -32,7 +32,7 @@ var recurrEvent = function(title, startDay) {
   return events; 
 }
 
-//create blank calendar to start... 
+//create blank calendar to start...
 $(document).ready(function($) {
   createCalendar();
 });
