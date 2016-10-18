@@ -1,0 +1,8 @@
+THINGS THAT ARE A LITTLE STRANGE
+
+Serving up files from client folder and also node_modules seperately didn't seem to work
+  but then putting client side seperately into bower_components did
+  and can't just serve up bower_components file, have to have index.html in filepath
+
+Where are the filepaths relative to?
+  from the file that references it? from where the server is set up?

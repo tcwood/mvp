@@ -13,34 +13,32 @@ angular.module('eventAdder', ['ngRoute'])
     $scope.warning = '';
 
     $scope.sendData = function() {
-      if ($scope.title === undefined || $scope.title === '') {
+      if ($scope.description === undefined || $scope.description === '') {
         $scope.warning = 'Please enter a description!';
       } else {
         var data = JSON.stringify({
-          title: $scope.title,
+          description: $scope.description,
           date: $scope.date
         });
-
 
         $http({
           method: 'POST',
           data: data,
           url: '/addData'
         }).then(function successCallback(response) {
-            console.log(response);
-
-
-            // this callback will be called asynchronously
-            // when the response is available
+            console.log('response from post success!', response);
+            $http.get('/')
+            .then(function successCallback(res) {
+              console.log('GET right after post dataz-', res.data);
+            }), function errorCallback(res) {
+              console.log('GET right after post = failz', res);
+            }
           }, function errorCallback(response) {
             console.log('error:', response);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
           });
       }
 
-
-      console.log($scope.title, $scope.date);
+      console.log($scope.description, $scope.date);
     };
 
   });
