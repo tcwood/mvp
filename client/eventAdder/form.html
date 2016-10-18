@@ -1,15 +1,42 @@
-<div ng-controller='eventAdderCntrl'>
-  <form name='eventAdderForm' ng-submit='sendData()'>
-    <span>Short description: </span>
-    <br>
-    <input type='text' ng-model='description'> <br>
-    <font color='red'>{{warning}}</font><br>
-    <span>Start date:</span>
-    <br>
-    <input type='date' ng-model='date'><br>
-    <button> Add to calendar </button>
-  </form>
-  Title: {{description}} <br>
-  Date: {{date}} <br>
 
+<div ng-controller='eventAdderCntrl'>
+  <div class="row">  
+    <form name='eventAdderForm' ng-submit='sendData()'>
+      <span>Short description: </span>
+      <br>
+      <input type='text' ng-model='description'> <br>
+      <font color='red'>{{warning}}</font><br>
+      <span>Start date:</span>
+      <br>
+      <input type='date' ng-model='date'><br>
+      <button class='submit btn-primary'> Add to calendar </button>
+    </form>
+    <!-- Title: {{description}} <br>
+    Date: {{date}} <br> -->
+  </div>
+  <div ng-repeat='dotRow in dotRows' class="row">
+    <div ng-repeat='dotCol in dotCols' class="square"></div>
+  </div>
 </div>
+
+<!-- <div class="row">
+    <div ng-repeat='square in week' class="squares"></div>
+
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+</div>
+<div class="row">
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+    <div class="squares"></div>
+</div>
+   -->

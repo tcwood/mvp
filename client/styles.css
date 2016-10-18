@@ -6,3 +6,26 @@ h1 {
 .fc-time{
    display : none;
 }
+
+.submit {
+  margin-bottom: 30px;
+}
+
+.square {
+  float:left;
+  width: 10%;
+  padding-bottom: 10%;
+  margin:1%;
+  background-color: #b7dcff;
+  border-radius: 30%;
+  transition: background-color 0.5s ease;
+}
+
+.square:hover {
+  background-color: #0b457c;
+}
+
+.container {
+  margin: 0;
+  margin-left: 10px;
+}

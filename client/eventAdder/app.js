@@ -12,6 +12,9 @@ angular.module('eventAdder', ['ngRoute'])
   .controller('eventAdderCntrl', function($scope, $location, $http){
     $scope.warning = '';
 
+    $scope.dotCols = [1,2,3,4,5,6,7];
+    $scope.dotRows = [1,2,3,4];
+
     $scope.sendData = function() {
       //Invalid form data
       if ($scope.description === undefined || $scope.description === '') {
