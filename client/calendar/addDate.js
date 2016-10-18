@@ -32,16 +32,7 @@ var recurrEvent = function(title, startDay) {
   return events; 
 }
 
-
+//create blank calendar to start... 
 $(document).ready(function($) {
-
-  //Calculate spaced interval of events
-  // NOTE: Will eventually need start day, start time, and interval parameters
-
-  var events = recurrEvent('do the things', '2016-10-28T07:00:00.000Z');
-  events = events.concat(recurrEvent('these things first', '2016-10-12T07:00:00.000Z'));
-  events = events.concat(recurrEvent('no date'));
-
-  createCalendar(events);
-
+  createCalendar();
 });

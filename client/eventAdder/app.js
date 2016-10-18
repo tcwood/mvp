@@ -33,7 +33,12 @@ angular.module('eventAdder', ['ngRoute'])
             $http.get('./getEvents')
               .success(function(res) {
               //res now gets correct data... an array with all start event objects
+                $('#calendar').fullCalendar('removeEvents');
 
+                var events = recurrEvent('do the things', '2016-10-17T07:00:00.000Z');
+                console.log('global recurrEvents?', events)
+
+                $('#calendar').fullCalendar('addEventSource', events);
               //pass events through recurr Event function to make events masterlist array
 
               //refresh calendar to have updated events
