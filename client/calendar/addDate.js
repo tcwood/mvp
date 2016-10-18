@@ -1,38 +1,5 @@
-$(document).ready(function($) {
-
-  //Calculate spaced interval of events
-  // NOTE: Will eventually need start day, start time, and interval parameters
-  window.recurrEvent = function(title) {    
-    var events = [];                                        
-    var daySpacing = [0, 1, 2, 4, 8, 16, 32];                  
-
-    var curr = moment();
-    for (var interval of daySpacing) {
-      curr = $.extend(true, {}, curr);
-
-      //moment's add function mutates original object
-      curr = curr.add(interval, 'days');
-
-      events.push({
-        title: title,
-        start: curr.format()
-      });
-    }
-    return events; 
-  }
-
-  var events = recurrEvent('do the things');
-
-  // events = events.concat(recurrEvent('otherStuff'));
-  // events = events.concat(recurrEvent('MoarStuff', '2016-10-28T07:00:00.000Z'));
-
-  // console.log(events);
-  
-  // setInterval(function(){
-  //    events = events.concat(recurrEvent('other stuff'));
-  // }, 1000);
-
-    $('#calendar').fullCalendar({
+var createCalendar = function(events) {
+  $('#calendar').fullCalendar({
       // calendar properties
       editable: true,
       header: {
@@ -43,7 +10,38 @@ $(document).ready(function($) {
 
       events: events
     });
+}
 
-    // $('#calendar').fullCalendar('rerenderEvents');
+var recurrEvent = function(title, startDay) {    
+  var events = [];                                        
+  var daySpacing = [0, 1, 2, 4, 8, 16, 32];                  
+
+  var startMoment = moment(startDay) || moment();
+  // var curr = moment();
+  for (var interval of daySpacing) {
+    startMoment = $.extend(true, {}, startMoment);
+
+    //moment's add function mutates original object
+    startMoment = startMoment.add(interval, 'days');
+
+    events.push({
+      title: title,
+      start: startMoment.format()
+    });
+  }
+  return events; 
+}
+
+
+$(document).ready(function($) {
+
+  //Calculate spaced interval of events
+  // NOTE: Will eventually need start day, start time, and interval parameters
+
+  var events = recurrEvent('do the things', '2016-10-28T07:00:00.000Z');
+  events = events.concat(recurrEvent('these things first', '2016-10-12T07:00:00.000Z'));
+  events = events.concat(recurrEvent('no date'));
+
+  createCalendar(events);
 
 });

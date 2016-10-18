@@ -32,6 +32,13 @@ angular.module('eventAdder', ['ngRoute'])
             //Send GET request after successful POST
             $http.get('./getEvents')
               .success(function(res) {
+              //res now gets correct data... an array with all start event objects
+
+              //pass events through recurr Event function to make events masterlist array
+
+              //refresh calendar to have updated events
+
+
               console.log('GET right after post dataz-', res);
               })
               .error(function(res) {
