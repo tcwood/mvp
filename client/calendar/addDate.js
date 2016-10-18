@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function($) {
   // page is ready
   var recurrEvent = function(title, startDay, startTime) { 
     var events = [];                                        
