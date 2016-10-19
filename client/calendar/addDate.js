@@ -12,21 +12,20 @@ var createCalendar = function(events) {
     });
 }
 
-var recurrEvent = function(title, startDay) {    
+var recurrEvent = function(title, startDay, intervals) {    
   var events = [];                                        
-  var daySpacing = [0, 1, 2, 4, 8, 16, 32];                  
-
+  console.log('intervals from inside recurr event', intervals)
   var startMoment = moment(startDay) || moment();
-  // var curr = moment();
-  for (var interval of daySpacing) {
-    startMoment = $.extend(true, {}, startMoment);
+
+  for (var interval of intervals) {
 
     //moment's add function mutates original object
-    startMoment = startMoment.add(interval, 'days');
+    var nextMoment = startMoment.clone();
+    nextMoment = nextMoment.add(interval, 'days');
 
     events.push({
       title: title,
-      start: startMoment.format()
+      start: nextMoment.format()
     });
   }
   return events; 

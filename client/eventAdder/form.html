@@ -11,14 +11,11 @@
       <input type='date' ng-model='date'><br>
       <button class='submit btn-primary'> Add to calendar </button>
     </form>
-    <!-- Title: {{description}} <br>
-    Date: {{date}} <br> -->
   </div>
   <div ng-repeat='dotRow in dotRows' class="row">
     <div ng-repeat='dotCol in dotCols' 
-    class="square" 
-    ng-style="setClass(dotRow * 7 + dotCol)" 
+    ng-click="changeClass(dotRow * 7 + dotCol)"
+    ng-class="classes[dotRow * 7 + dotCol]"
     data="{{dotRow * 7 + dotCol}}"></div>
   </div>
 </div>
-

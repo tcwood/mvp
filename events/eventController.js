@@ -25,10 +25,14 @@ module.exports = {
     } else {
       var description =  req.body.description;
       var startDay = req.body.date || new Date();
+      var interval = req.body.interval;
+
+      console.log('interval from controller', req.body.interval);
 
       var event = createEvent({
         description: description,
-        startDay: startDay
+        startDay: startDay,
+        interval: interval
       });
       // console.log('event from inside eventController on post', event);
       res.json(event);
