@@ -14,7 +14,6 @@ var createCalendar = function(events) {
 
 var recurrEvent = function(title, startDay, intervals) {    
   var events = [];                                        
-  console.log('intervals from inside recurr event', intervals)
   var startMoment = moment(startDay) || moment();
 
   for (var interval of intervals) {
