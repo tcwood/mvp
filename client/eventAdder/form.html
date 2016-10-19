@@ -1,28 +1,27 @@
 
 <div ng-controller='eventAdderCntrl'>
   <!-- <div class="row"> -->
-    <div class='filler'></div>
-    <div class="col-md-offset-1 col-xs-offset-1">
-      <form name='eventAdderForm' ng-submit='sendData()'>
-        <span> <i> Add a study topic </i> </span> <br>
-        <!-- <span>Short description: </span> -->
-        
-        <!-- <input type="text" name="field1" placeholder="Your Name *"> -->
-        <input class='input' type='text' placeholder="Short description" ng-model='description'> <br>
-        <font color='red'>{{warning}}</font><br>
-        <span><i>Start date:</i></span>
-        <br>
-        <input class='input' type='date' ng-model='date'><br>
-      </form>
-    </div>
-    <div class="col-md-offset-2 col-xs-offset-2">
-        <button class='submit'> Add to calendar </button>
-    </div>
+  <div class='filler'></div>
+  <div class="col-md-offset-1 col-xs-offset-1">
+    <span> <i> Add a study topic </i> </span> <br>
+    <form name='eventAdderForm' >
+      <!-- <span>Short description: </span> -->
+      
+      <!-- <input type="text" name="field1" placeholder="Your Name *"> -->
+      <input class='input' type='text' placeholder="Short description" ng-model='description'> <br>
+      <font color='red'>{{warning}}</font><br>
+      <span><i>Start date: {{$scope.intervalTracker}}</i></span><br>
+      <input class='input' type='date' ng-model='date'><br>
+      <div class="col-md-offset-2 col-xs-offset-2">
+        <button ng-click='sendData()' class='submit'> Add to calendar </button>
+      </div>
+    </form>
   </div>
   <div ng-repeat='dotRow in dotRows' >
     <div ng-repeat='dotCol in dotCols' 
-    ng-click="changeClass(dotRow * 7 + dotCol)"
-    ng-class="classes[dotRow * 7 + dotCol]"
-    data="{{dotRow * 7 + dotCol}}"></div>
+      ng-click="changeClass(dotRow * 7 + dotCol)"
+      ng-class="classes[dotRow * 7 + dotCol]"
+      data="{{dotRow * 7 + dotCol}}">
+    </div>
   </div>
 </div>

@@ -19,6 +19,7 @@ angular.module('eventAdder', ['ngRoute'])
 
     $scope.classes = [];
     var intervalTracker = defaultInterval.slice();
+    console.log('intervalTracker before functions', intervalTracker)
 
     //Initialize array of individual $scope.classes for each clickable grid element
     for (var i = 0; i <= ($scope.dotCols[$scope.dotCols.length -1] + 1) * ($scope.dotRows[$scope.dotRows.length -1] + 1); i++) {
@@ -29,26 +30,31 @@ angular.module('eventAdder', ['ngRoute'])
       }
     }
 
+    console.log($scope.classes);
+
     $scope.changeClass = function(index) {
       if ($scope.classes[index] === 'square') {
         intervalTracker.push(index);
+        console.log('index', index, 'added to ', intervalTracker);
         $scope.classes[index] = 'selected';
       } else {
         var removeElem = intervalTracker.indexOf(index);
         
         intervalTracker.splice(removeElem, 1);
-
+        console.log('index', index, 'removed from ', intervalTracker);
         $scope.classes[index] = 'square';
       }
     }
 
     $scope.sendData = function() {
       //Sort event intervals so can be inputted into event creator function
+      console.log('interval tracker from sendData before sort', intervalTracker)
+
       intervalTracker = intervalTracker.sort(function(a,b) {
         return a - b;
       });
 
-      console.log(intervalTracker);
+      console.log('interval tracker from sendData', intervalTracker);
 
       //Invalid form data
       if ($scope.description === undefined || $scope.description === '') {
@@ -76,7 +82,6 @@ angular.module('eventAdder', ['ngRoute'])
 
                 res.forEach(function(startEvent) {
                   var interval = startEvent.interval.split(',');
-                  console.log('interval from get in app', startEvent.interval);
                   var description = startEvent.description;
                   var startDate = startEvent.startDay;
                   allEvents = allEvents.concat(recurrEvent(description, startDate, interval));
